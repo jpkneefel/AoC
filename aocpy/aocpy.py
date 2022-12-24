@@ -10,8 +10,6 @@ from aocd.models import Puzzle
 
 
 def init(day, year):
-    num = re.compile(r"(\d+)")
-
     puzzle = Puzzle(year=year, day=day)
 
     global DATA
@@ -37,11 +35,18 @@ def get_lines():
     name = box.value
     data = None
     if name in DATA:
-        print("Done reading \"{name}\"".format(name=box.value))
         data = DATA[name].splitlines()
     else:
         data = open(name, 'r').read()
-        print("Done reading \"{name}\"".format(name=box.value))
+    print("Done reading \"{name}\"".format(name=box.value))
+    return list(map(lambda l: l.rstrip(), data))
+
+
+def get_data(day, year, example=True):
+    puzzle = Puzzle(year=year, day=day)
+    name = "example" if example else "input"
+    data = puzzle.example_data.splitlines() if example else puzzle.input_data.splitlines()
+    print("Done reading \"{name}\"".format(name=name))
     return list(map(lambda l: l.rstrip(), data))
 
 
