@@ -1,5 +1,3 @@
-import aocpy as aoc
-from aocpy import print_bools, print_mat
 import re
 from enum import Enum
 from copy import deepcopy
